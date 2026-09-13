@@ -1,0 +1,219 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage{fontspec}
+\usetheme{metropolis}
+\usepackage{booktabs}
+
+% ---- Fira Sans (explicit paths; not in fontconfig) ----------------------
+\setsansfont{Fira Sans}[
+  Path=/usr/share/texlive/texmf-dist/fonts/opentype/public/fira/,
+  Extension=.otf,
+  UprightFont=FiraSans-Regular,
+  BoldFont=FiraSans-Bold,
+  ItalicFont=FiraSans-Italic,
+  BoldItalicFont=FiraSans-BoldItalic,
+]
+\setmonofont{Fira Mono}[
+  Path=/usr/share/texlive/texmf-dist/fonts/opentype/public/fira/,
+  Extension=.otf,
+  UprightFont=FiraMono-Regular,
+  BoldFont=FiraMono-Bold,
+]
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---- Polkadot pink accent ----------------------------------------------
+\definecolor{polkadotpink}{HTML}{E6007A}
+\definecolor{ink}{HTML}{1A1A1A}
+
+\setbeamercolor{palette primary}{fg=polkadotpink}
+\setbeamercolor{frametitle}{fg=polkadotpink}
+\setbeamercolor{progress bar}{fg=polkadotpink}
+\setbeamercolor{alerted text}{fg=polkadotpink}
+\setbeamercolor{title separator}{fg=polkadotpink}
+\setbeamercolor{normal text}{fg=ink}
+\metroset{block=fill,progressbar=frametitle,numbering=fraction}
+
+% Keep the title frame within the 16:9 text height
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+
+\title{Blockchain in Practice}
+\subtitle{Two Video Overviews: Polkadot and Kubernetes}
+\author{Aidas Kri\v{s}\v{c}i\={u}nas}
+\institute{Blockchain Course}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+% ---------------------------------------------------------------------------
+\begin{frame}{Overview}
+  \small
+  \begin{itemize}
+    \item Two videos from the course material are summarised: content and key concepts only (no rating).
+    \item \alert{Video 1} --- from the course playlist:
+          \emph{What is Polkadot? A Polkadot for Beginners Guide and Intro to Blockchain}
+          (entry 24).
+    \item \alert{Video 2} --- free choice:
+          \emph{Managing and Securing Blockchain Applications on Kubernetes}
+          (Haining Zhang \& Yang Yu, VMware; KubeCon + CloudNativeCon China 2018).
+    \item Required viewing only, not reviewed: \emph{How the Blockchain is Changing Money and Business}.
+  \end{itemize}
+  \vfill
+  \footnotesize Each video is presented as a short overview plus its main concepts and 2--3 keywords.
+\end{frame}
+
+% ===========================================================================
+\begin{frame}{Video 1: What It Is About}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.55\textwidth}
+      \textbf{Talk at a glance}
+      \begin{itemize}
+        \item Channel: \emph{Polkadot}; published May 2020; runtime $\approx$76\,min.
+        \item A beginner, jargon-free introduction to Polkadot and blockchain.
+        \item Presenters:
+          \begin{itemize}
+            \item \textbf{Bill Laboon} --- Technical Education Lead, Web3 Foundation.
+            \item \textbf{Dan Reecer} --- Community \& Growth, Web3 Foundation.
+          \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \textbf{Roadmap stated up front}
+      \begin{enumerate}
+        \item How the Internet came about and evolved.
+        \item History of blockchain and crypto, and the similarities.
+        \item What blockchain is.
+        \item Problems of legacy blockchains.
+        \item How Polkadot solves them.
+        \item What to expect from Polkadot long term.
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Video 1: From the Internet to the Blockchain}
+  \scriptsize
+  \textbf{Internet history (the parallel)}
+  \begin{itemize}
+    \item Late 1960s: computers were ``islands unto themselves'' --- data moved by diskette, tape, punch cards.
+    \item \textbf{ARPANET}: first network of computing sites (universities CMU, Rutgers, Illinois, plus e.g.\ NSA).
+    \item Early file-sharing and email; Queen Elizabeth II sent her first email in 1976.
+    \item \textbf{1978}: Robert Kahn's TCP/IP let separate networks share one language --- the birth of the Internet.
+  \end{itemize}
+  \textbf{What a block is}
+  \begin{itemize}
+    \item ``Chunks of data \ldots associated with a particular time period \ldots connected in a chain and distributed among many computers.''
+    \item No central place where the blockchain lives; it cannot be altered once the computers agree on the next block.
+    \item Analogies: every poker hand recorded by all players; a chess move-sheet anyone can replay.
+  \end{itemize}
+  \textbf{Chain of history:} 1980s digital cash (eCash) $\rightarrow$ 1997 Hashcash (Adam Back) $\rightarrow$ 2008 Bitcoin paper / 2009 network $\rightarrow$ 2015 Ethereum (programmable apps).
+\end{frame}
+
+\begin{frame}{Video 1: Key Concepts \& Keywords}
+  \scriptsize
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.5\textwidth}
+      \textbf{Decentralized system}
+      \begin{itemize}
+        \item No central point of storage; many computers maintain one shared chain.
+        \item Lets people trust each other without knowing each other; very hard to shut down.
+      \end{itemize}
+      \textbf{Problems of legacy chains}
+      \begin{itemize}
+        \item Poor interoperability --- good within one chain, weak across networks.
+        \item One size fits all (no customisation); weak governance; hard upgrades.
+        \item Limited scalability: Bitcoin $\approx$3--4 TPS vs.\ Visa $>$1{,}700; high fees when busy.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \textbf{How Polkadot solves them}
+      \begin{itemize}
+        \item \alert{Relay chain + parachains}: many custom chains (IoT, finance, gaming) into one ``organism''.
+        \item \alert{Shared security}: validators shared across chains; collators feed data to them.
+        \item Runtime upgrades by on-chain governance: proposal $\rightarrow$ second $\rightarrow$ referendum $\rightarrow$ majority of stake.
+        \item \emph{Substrate} framework to build chains; \emph{Kusama} as a canary network.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vfill
+  \textbf{Keywords:} \alert{Internet} \;$\cdot$\; \alert{Definition of Block} \;$\cdot$\; \alert{Decentralized System}.
+\end{frame}
+
+% ===========================================================================
+\begin{frame}{Video 2: What It Is About}
+  \small
+  \begin{itemize}
+    \item \textbf{Talk:} \emph{Managing and Securing Blockchain Applications on Kubernetes}.
+    \item \textbf{Venue:} KubeCon + CloudNativeCon China 2018 (Nov 14, 2018).
+    \item \textbf{Speakers (VMware China R\&D):}
+      \begin{itemize}
+        \item \textbf{Haining ``Henry'' Zhang} --- Technical Director; founder of the Harbor project.
+        \item \textbf{Yang Yu} --- Software Engineer; Kubernetes CNI plugin / NSX; ex-OpenStack.
+      \end{itemize}
+    \item \textbf{Premise:} because blockchain is \emph{decentralised}, the cloud is an ideal place to run it, and Kubernetes is a \emph{ubiquitous cloud operating system}.
+    \item \textbf{Goal:} reduce operational complexity by automating enterprise blockchain deployment.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Video 2: Key Concepts \& Keywords}
+  \footnotesize
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.5\textwidth}
+      \textbf{Enterprise / private blockchain}
+      \begin{itemize}
+        \item \alert{Hyperledger Fabric} --- an open-source, permissioned blockchain framework.
+        \item Aimed at business problems, not public cryptocurrency use.
+      \end{itemize}
+      \textbf{Automated deployment on Kubernetes}
+      \begin{itemize}
+        \item Deploy Hyperledger Fabric automatically on Kubernetes.
+        \item Kubernetes as the ubiquitous cloud OS reduces operational complexity.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \textbf{Security by isolation}
+      \begin{itemize}
+        \item Use a \alert{CNI plugin} to apply network policies based on Kubernetes \emph{namespaces}.
+        \item Isolates workloads between blockchain entities (peers, orderers, organisations).
+      \end{itemize}
+      \textbf{Outcome}
+      \begin{itemize}
+        \item A foundation for enterprise \alert{Blockchain-as-a-Service (BaaS)} on Kubernetes.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vfill
+  \textbf{Keywords:} \alert{Blockchain in Kubernetes} \;$\cdot$\; \alert{Enterprise Scale Blockchain} \;$\cdot$\; \alert{Private Blockchain}.
+\end{frame}
+
+% ===========================================================================
+\begin{frame}{Keywords Recap}
+  \small
+  \begin{tabular}{@{}p{0.40\textwidth}p{0.54\textwidth}@{}}
+    \toprule
+    \textbf{Video} & \textbf{Keywords} \\
+    \midrule
+    What is Polkadot? (Beginners Guide) & Internet; Definition of Block; Decentralized System \\
+    \addlinespace
+    Managing \& Securing Blockchain on Kubernetes & Blockchain in Kubernetes; Enterprise-Scale Blockchain; Private Blockchain \\
+    \bottomrule
+  \end{tabular}
+  \vfill
+  \begin{itemize}
+    \item Video 1: conceptual foundation --- what a block is and why decentralisation matters.
+    \item Video 2: putting it into production --- permissioned blockchain, automated on Kubernetes, secured by isolation.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[standout]
+  Thank you! \\[0.5em]
+  \small Questions?
+\end{frame}
+
+\end{document}
